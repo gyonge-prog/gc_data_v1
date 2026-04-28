@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>숫자로 보는 워케이션 | 여기어때 Biz 인사이트 Vol.01</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script id="CD" type="application/json">
+{"s01":{"rows":[{"label":"1박 단기","general":12.3,"wc":null},{"label":"2박","general":21.1,"wc":21.6},{"label":"3~4박","general":22.5,"wc":27.5},{"label":"5박+","general":15.3,"wc":21.7}]},"s02":{"days":["월","화","수","목","금","토","일"],"general":[9.3,8.9,9.9,12.2,19.5,27.0,13.2],"wc":[12.2,10.2,13.0,18.1,28.1,1.7,16.7]},"s03":{"rows":[{"label":"20대","pct":11.9,"role":"실무직"},{"label":"30대","pct":43.7,"role":"중간관리직"},{"label":"40대","pct":35.6,"role":"팀장급"},{"label":"50대+","pct":8.7,"role":"임원급"}]},"s04":{"rows":[{"label":"대기업","share":57.4,"adr":399958},{"label":"공공기관","share":19.8,"adr":345926},{"label":"중견기업","share":12.9,"adr":409447},{"label":"중소기업","share":9.9,"adr":377383}]},"s05":{"rows":[{"label":"제조","share":22.5},{"label":"IT","share":18.7},{"label":"금융","share":10.5},{"label":"에너지","share":10.1},{"label":"공공행정","share":7.6},{"label":"건설","share":6.3},{"label":"유통","share":4.4},{"label":"게임","share":4.4},{"label":"의료","share":4.0},{"label":"교육","share":2.9}]},"s06":{"freq":[{"l":"1회","p":13.7,"c":"#C8C6C0"},{"l":"2~5회","p":42.3,"c":"#E87A65"},{"l":"6~10회","p":22.1,"c":"#E5503A"},{"l":"11회+","p":21.9,"c":"#B03020"}]},"s07":{"rows":[{"label":"Biz 포인트 도입","companies":121,"co_pct":10.7,"booking_pct":34.7,"color":"#E5503A"},{"label":"일반 제휴","companies":1013,"co_pct":89.3,"booking_pct":65.3,"color":"#C8C6C0"}]},"s08":{"months":["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],"values":[8.0,6.6,5.1,5.6,8.0,8.3,10.2,13.9,7.5,10.4,6.7,9.8]},"s09":{"months":["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],"search":[44.0,48.1,100.0,53.6,55.7,75.9,60.7,50.5,42.3,46.0,42.0,29.9],"booking":[66.3,55.4,58.1,64.8,68.6,75.1,100.0,86.8,69.2,53.5,61.7,72.9]},"s10":{"avg_general":158583,"avg_biz":177550,"rows":[{"label":"제주","general":121959,"biz":165651},{"label":"강원","general":165515,"biz":200798},{"label":"부산","general":153743,"biz":172936},{"label":"서울","general":198149,"biz":177779},{"label":"경북","general":184464,"biz":204799},{"label":"전남","general":154577,"biz":173287},{"label":"경기","general":164447,"biz":167592},{"label":"경남","general":160082,"biz":174510},{"label":"충남","general":160507,"biz":176090},{"label":"인천","general":167471,"biz":196217}]},"s11":{"rows":[{"label":"숙박","amount":393445,"pct":34.5,"color":"#E5503A"},{"label":"식음료","amount":393814,"pct":34.5,"color":"#1A5FA8"},{"label":"교통·쇼핑","amount":263110,"pct":23.1,"color":"#0F8070"},{"label":"레저·액티비티","amount":89808,"pct":7.9,"color":"#6B4CA8"}],"total":1140177}}
+</script>
+<style>
+:root{
+  --bk:#1A1A18;--gd:#3A3A38;--gm:#888780;--gl:#F0EFE8;--wh:#FAFAF8;
+  --W:900px;
+  /* 섹션별 색상 */
+  --s1:#E5503A; --s1l:#E5503A; --s1bg:#FDF0EE;
+  --s2:#3D52A0; --s2l:#7B8FD4; --s2bg:#ECEFFE;
+  --s3:#0F8070; --s3l:#3DB89F; --s3bg:#E0F2EE;
+  --s4:#C47A1A; --s4l:#E8A84A; --s4bg:#FFF4E0;
+  --s5:#6B4CA8; --s5l:#A07ED4; --s5bg:#F0EBFF;
+  /* 하위 호환 */
+  --or:#E5503A;--orl:#FDF0EE;--orm:#F4B4A8;
+  --gn:#2D8A5E;--gnl:#E8F5EE;--bl:#1A5FA8;--bll:#EAF1FB;
+  --tl:#0F8070;--tll:#E0F2EE;--pu:#6B4CA8;--pul:#F0EBFF;
+  --am:#C47A1A;--aml:#FFF4E0;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--wh);color:var(--bk);padding-bottom:80px;}
+
+/* 커버 */
+.cover{background:var(--bk);padding:52px 0 44px;}
+.wrap{max-width:var(--W);margin:0 auto;padding:0 48px;}
+.series-bar{display:flex;align-items:center;gap:0;margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.12);}
+.series-name{font-size:12px;font-weight:700;color:var(--or);letter-spacing:.14em;text-transform:uppercase;}
+.series-vol{font-size:14px;font-weight:700;color:white;letter-spacing:.08em;margin-left:16px;padding-left:16px;border-left:1px solid rgba(255,255,255,.2);}
+.ch1{font-size:30px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:8px;}
+.csub{font-size:12px;color:rgba(255,255,255,.4);line-height:1.7;margin-bottom:24px;}
+.ckpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:24px;}
+.kpi{padding:11px 8px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);}
+.kpi .n{font-size:13px;font-weight:700;color:var(--or);line-height:1.2;margin-bottom:3px;}
+.kpi .n.y{color:#4ADE80;font-size:12px;}
+.kpi .l{font-size:9px;color:rgba(255,255,255,.35);line-height:1.5;}
+.cmeta{font-size:10px;color:rgba(255,255,255,.2);line-height:1.8;border-top:1px solid rgba(255,255,255,.06);padding-top:14px;}
+
+/* 섹션 공통 */
+.sec{max-width:var(--W);margin:0 auto;padding:0 48px;}
+.sec-hd{padding:40px 0 18px;border-bottom:2px solid;margin-bottom:36px;}
+.sec-tag{font-size:13px;font-weight:700;letter-spacing:.12em;margin-bottom:7px;text-transform:uppercase;}
+.sec-h2{font-size:24px;font-weight:700;line-height:1.3;margin-bottom:6px;}
+
+/* 섹션별 색 적용 */
+.sec1 .sec-hd{border-color:var(--s1);}
+.sec1 .sec-tag{color:var(--s1);}
+.sec1 strong{color:var(--s1);font-weight:700;}
+
+.sec2 .sec-hd{border-color:var(--s1);}
+.sec2 .sec-tag{color:var(--s1);}
+.sec2 strong{color:var(--s1);font-weight:700;}
+
+.sec3 .sec-hd{border-color:var(--s1);}
+.sec3 .sec-tag{color:var(--s1);}
+.sec3 strong{color:var(--s1);font-weight:700;}
+
+.sec4 .sec-hd{border-color:var(--s1);}
+.sec4 .sec-tag{color:var(--s1);}
+.sec4 strong{color:var(--s1);font-weight:700;}
+
+.sec5 .sec-hd{border-color:var(--s1);}
+.sec5 .sec-tag{color:var(--s1);}
+.sec5 strong{color:var(--s1);font-weight:700;}
+
+/* STAT 텍스트 블록 */
+.sblock{margin-bottom:36px;}
+.sn{font-size:18px;font-weight:700;color:var(--bk);line-height:1.35;margin-bottom:12px;}
+
+/* 본문 텍스트 — 블럭 없이 그냥 텍스트 */
+.ins{font-size:13px;color:var(--gd);line-height:1.95;padding:0;border:none;background:none;}
+
+/* 차트 블록 */
+.cblock{margin-bottom:32px;}
+.cn{display:none;}
+.ct{font-size:12px;font-weight:700;color:var(--gm);margin-bottom:8px;letter-spacing:.02em;}
+.cbox{border:1px solid #E0DED8;padding:20px;}
+.src{font-size:10px;color:var(--gm);border-top:1px solid var(--gl);padding-top:7px;margin-top:10px;}
+.cmt{padding:6px 11px;border-left:3px solid #C8C6C0;background:#F7F6F0;font-size:9.5px;color:var(--gm);line-height:1.6;font-style:italic;margin-top:8px;}
+
+.div{height:1px;background:var(--gl);margin:44px 0;}
+
+/* 푸터 */
+.footer{background:var(--bk);padding:28px 0;margin-top:56px;}
+.fi{max-width:var(--W);margin:0 auto;padding:0 48px;display:flex;justify-content:space-between;align-items:center;}
+.ft{font-size:10px;color:rgba(255,255,255,.25);line-height:1.8;}
+.fl{font-size:11px;font-weight:700;color:var(--or);letter-spacing:.06em;}
+svg text{font-family:'Noto Sans KR',sans-serif;}
+</style>
+</head>
+<body>
+<div class="cover"><div class="wrap">
+  <div class="series-bar"><span class="series-name">여기어때 Biz 인사이트</span><span class="series-vol">Vol.01 · 워케이션 편</span></div>
+  <div class="ch1">숫자로 보는 워케이션</div>
+  <div class="csub">기업 임직원 워케이션 소비 패턴 분석 · 2024~2026 실적 데이터 기반 · 12개 핵심 STAT</div>
+  <div class="ckpis">
+    <div class="kpi"><div class="n">7만건+</div><div class="l">분석 대상 거래</div></div>
+    
+    
+    <div class="kpi"><div class="n">177,550원</div><div class="l">기업회원 평균 ADR</div></div>
+    <div class="kpi"><div class="n y">+25.4%</div><div class="l">예약 건수 (24→25년)</div></div>
+    <div class="kpi"><div class="n y">+19.7%</div><div class="l">제휴 기업수 (24→25년)</div></div>
+    
+  </div>
+  <div class="cmeta">데이터 기준: 체크인 기준 2024.01~2026.03 / Budget Hotel·출장전용기업 제외 · 발행: 여기어때비즈니스 ES팀 · 2026.04</div>
+</div></div>
+<div id="app"><div class="sec" style="max-width:var(--W);margin:0 auto;padding:48px 48px 0;">
+  <div style="padding:36px 0 32px;border-bottom:2px solid #E5503A;margin-bottom:36px;">
+    <div style="font-size:10px;font-weight:700;color:#E5503A;letter-spacing:.12em;margin-bottom:7px;">들어가며</div>
+    <div style="font-size:24px;font-weight:700;line-height:1.3;margin-bottom:6px;">워케이션, 지나간 유행인가 자리잡은 문화인가</div>
+  </div>
+  <div style="font-size:13px;color:#3A3A38;line-height:1.95;margin-bottom:44px;">
+    <p style="margin-bottom:18px;">워케이션(Workation)이라는 단어가 처음 등장했을 때, 많은 사람들은 이를 팬데믹이 만들어낸 일시적 현상으로 받아들였다. 재택근무가 일상화된 시기, "굳이 집이 아니어도 된다면 여행지에서 일하면 어떨까"라는 질문에서 시작된 이 개념은 코로나19 종식과 함께 사라질 것처럼 보였다.</p>
+    <p style="margin-bottom:18px;">그러나 데이터는 다른 이야기를 한다. 여기어때 비즈니스 플랫폼에 기록된 기업 임직원의 워케이션 예약 건수는 2024년 대비 2025년 <strong style="color:#E5503A;">25.4% 증가</strong>했다. 팬데믹이 완전히 끝난 이후에도 수요는 줄지 않았다. 오히려 특정 기업, 특정 업종, 특정 연령대를 중심으로 더 깊고 반복적인 이용 패턴이 형성되고 있다.</p>
+    <p style="margin-bottom:18px;">이는 워케이션이 위기의 산물이 아니라 하나의 근무 문화로 정착했음을 시사한다. 팬데믹이 촉발한 원격근무 실험은 "장소와 성과는 분리될 수 있다"는 인식을 조직 안에 남겼고, 그 인식 위에서 워케이션은 <strong style="color:#E5503A;">복지 제도의 한 형태로 진화</strong>하고 있다. 지자체가 지원금을 설계하고, 기업이 전용 포인트를 편성하며, 임직원이 반복적으로 재이용하는 구조가 만들어졌다는 것이 그 증거다.</p>
+    <p style="margin-bottom:18px;">물론 모든 기업이 워케이션을 적극적으로 활용하고 있는 것은 아니다. 데이터를 자세히 들여다보면, 워케이션을 잘 쓰는 기업과 그렇지 않은 기업 사이의 격차가 뚜렷하다. 복지포인트를 제도적으로 연결하고, 임직원의 자율적 선택을 지원하는 기업일수록 이용 빈도와 만족도가 높게 나타난다. 워케이션은 그 자체로 완성되는 제도가 아니라, <strong style="color:#E5503A;">기업이 어떻게 설계하고 권장하느냐에 따라 결과가 달라지는 복지 인프라</strong>에 가깝다.</p>
+    <p>이 브리프는 그 구조를 데이터로 들여다본다. 누가 어떻게 예약하고, 어떤 기업이 얼마나 쓰며, 어느 시즌에 집중되고, 실제로 얼마를 소비하는지. 지금 이 시점에 워케이션 복지를 설계하거나 재검토하고 있다면, 이 브리프가 그 판단의 출발점이 될 수 있다.</p>
+  </div>
+  <div class="div" style="margin-top:0;"></div>
+</div><div class="sec sec1">
+  <div class="sec-hd">
+    <div class="sec-tag">SECTION 01</div>
+    <div class="sec-h2">워케이션 예약자는 왜 다르게 움직이는가</div>
+  </div>
+  <div class="sblock"><div class="sn">워케이션 예약자는 더 일찍, 더 계획적으로 예약한다</div><div class="ins"><p style="margin-bottom:14px;">워케이션 예약의 리드타임은 일반 숙박 예약 대비 전 박수 구간에서 일관되게 길다. 3~4박 구간에서 워케이션 예약자는 <strong>27.5일 전에 예약을 완료</strong>하는 반면, 일반 예약자는 22.5일로 22%의 격차가 발생한다. 박수가 늘수록 미리 움직인다는 패턴이 뚜렷해지며, 팀 단위에서는 이 경향이 더욱 선명해진다. 5인 이상 그룹의 평균 리드타임은 33.2일로, 2인 이하 소규모 예약(20.5일)보다 62% 앞선 시점에 예약이 이루어진다. 팀 워케이션은 일정 조율·상위자 승인·예산 집행 등 여러 조직적 절차를 거쳐야 하며, 리드타임은 그 절차의 길이를 그대로 반영한다.</p><p>주목할 점은 5박 이상 구간의 역전 현상이다. 리드타임이 3~4박보다 오히려 짧아지는 이 패턴은, 장기 워케이션 참여자 상당수가 기업 복지 일정이나 부서 단위 워케이션 프로그램에 따라 이미 일정이 확정된 상태에서 예약을 진행하기 때문이다. 탐색과 결정의 시간이 필요 없는, <strong>제도화된 소비의 증거</strong>다. 결국 워케이션 예약은 복지 제도의 일정과 조직의 승인 구조 안에서 사전에 계획되고 실행되는 행태다. 워케이션 예약이 이렇게 계획적으로 이루어진다는 것은, 반대로 말하면 <strong>제도와 예산이 미리 설계되어 있어야만 실행이 일어난다</strong>는 의미이기도 하다.</p></div></div>
+<div class="sblock"><div class="sn">워케이션은 일반 대비 토요일 체크인이 극단적으로 낮다</div><div class="ins"><p style="margin-bottom:14px;">워케이션 예약자의 체크인 요일 분포는 일반 숙박 예약과 완전히 다른 패턴을 보인다. 일반 예약에서 토요일 체크인 비중은 <strong>27.0%로 압도적 1위</strong>를 차지하는 반면, 워케이션에서 토요일은 1.7%에 불과하다. 단순 비교로도 16배에 가까운 격차다. 대신 금요일(28.1%)이 최다를 기록하고, 목요일(18.1%)과 월요일(12.2%) 비중도 일반 대비 유의미하게 높다. 이 분포는 두 가지 이동 패턴이 공존하고 있음을 시사한다. 금요일 출발 후 주말 체류, 월요일 업무 재개로 이어지는 '주말 연계형'과, 목·월요일에 이동해 평일 일정을 소화하는 '평일 중간 이동형'이다.</p><p>토요일 체크인 기피는 단순한 개인 선호가 아니라, 워케이션을 '일하는 공간의 이동'으로 인식하는 태도에서 비롯된다. 이동 자체를 개인 휴일이 아닌 평일에 편입시키려는 실용적 성향이 이 수치에 담겨 있다. HR 담당자 입장에서 이 데이터의 함의는 명확하다. <strong>직원들이 워케이션을 위해 주말을 추가 소진하지 않는다</strong>는 것은, 워케이션이 기존 연차·휴가 일정 안에서 소화되는 구조임을 의미한다. 제도 도입 시 우려되는 '휴가 남용' 리스크가 실제 이용 패턴 데이터에 의해 반박되고 있는 셈이다.</p></div></div>
+  <div class="cblock">
+  <div class="ct">리드타임 비교</div>
+  <div class="cbox" id="c01"></div>
+  <div class="src">출처: 여기어때 기업회원 이용 데이터 분석</div><div class="cmt">💬 3박+·평일 체크인 포함 건을 워케이션으로 정의 · 약 7만건</div>
+</div>
+<div class="cblock">
+  <div class="ct">체크인 요일 패턴</div>
+  <div class="cbox" id="c02"></div>
+  <div class="src">출처: 여기어때 기업회원 이용 데이터 분석</div><div class="cmt">💬 1~2박 일반 vs 워케이션 비교</div>
+</div>
+  <div class="div"></div>
+</div><div class="sec sec2">
+  <div class="sec-hd">
+    <div class="sec-tag">SECTION 02</div>
+    <div class="sec-h2">워케이션을 실제로 이끄는 사람들</div>
+  </div>
+  <div class="sblock"><div class="sn">워케이션 예약의 8할은 30·40대 중간관리자가 만든다</div><div class="ins"><p style="margin-bottom:14px;">워케이션을 누가 쓰는가에 대한 일반적인 인식은 데이터와 상당한 거리가 있다. 워케이션은 흔히 디지털 노마드를 꿈꾸는 20대나 MZ세대의 트렌디한 소비로 이미지화되지만, 실제 예약 데이터는 <strong>30대(43.7%)와 40대(35.6%), 즉 중간관리직에서 팀장급의 연령대가 전체의 79.3%를 주도</strong>하고 있음을 보여준다. 워케이션 수요는 세대적 감수성이 아니라 실행 권한의 유무에서 만들어진다. 복지포인트 사용 승인 권한을 갖고, 팀 일정을 자율적으로 조율할 수 있으며, 상위자 결재 없이도 움직일 수 있는 연령대가 바로 30·40대다.</p><p>이 구조가 시사하는 바는 명확하다. 워케이션 도입 여부를 결정하는 사람도, 실제로 사용하는 사람도 같은 연령대라는 것이다. 제도를 설계하는 HR 담당자가 30·40대라면, 이 데이터는 자기 조직의 잠재 수요를 그대로 반영하고 있을 가능성이 높다. <strong>워케이션을 MZ세대 복지로 인식해 우선순위에서 밀어두었다면, 그 판단을 재검토할 근거</strong>가 이 수치 안에 있다.</p></div></div>
+<div class="sblock"><div class="sn">예약 건수는 대기업이, 객단가는 중견기업이 가장 높다</div><div class="ins"><p style="margin-bottom:14px;">기업 규모별 워케이션 예약 데이터는 거래 규모와 소비 단가가 반드시 비례하지 않는다는 점을 뚜렷하게 보여준다. 대기업은 전체 예약의 57.4%를 차지하며 절대적인 물량을 주도하지만, 박당 평균 단가(ADR)는 <strong>중견기업(409,447원)이 가장 높다</strong>. 중견기업의 예약 비중은 12.9%에 불과하지만, 1인당 선택하는 숙소 등급이 높아 소수의 고부가 예약이 집중되는 구조를 형성한다. 공공기관은 19.8%의 비중에도 불구하고 ADR이 345,926원으로 상대적으로 낮아, 가격 민감도가 높은 수요층임을 수치가 뒷받침한다.</p><p>이 차이는 복지 설계 방식의 차이에서 비롯된 것으로 해석된다. 대기업은 복지포인트 예산 자체가 크고 이용 인원이 많아 건수가 자연스럽게 쌓이는 반면, 중견기업은 임직원 개인의 선택 자유도가 상대적으로 높아 상위 등급 숙소를 자율적으로 선택하는 경향이 강하다. <strong>복지 예산을 얼마나 주느냐보다, 어떤 방식으로 설계하고 어느 정도의 자율성을 부여하느냐</strong>가 실제 이용 행태를 결정한다는 점에서, 이 데이터는 복지 제도 설계 방향에 직접적인 시사점을 제공한다.</p></div></div>
+<div class="sblock"><div class="sn">제조·IT가 전체 예약의 41%를 이끈다</div><div class="ins"><p style="margin-bottom:14px;">산업군별 워케이션 예약 분포는 업종에 따라 도입 수준이 명확하게 갈린다는 것을 보여준다. <strong>제조(22.5%)와 IT(18.7%)가 전체의 41%를 점유</strong>하며 워케이션 시장의 주류를 형성하고, 금융(10.5%)과 에너지(10.1%)는 10%를 넘어선 성숙 업종으로 분류된다. 건설(6.3%)·유통(4.4%)·게임(4.4%)은 아직 낮은 비중이지만 성장 가능성이 있는 업종으로 읽힌다. 기업 수 기준으로도 산업군별 예약 집중도 차이가 뚜렷해, 규모가 아닌 업종 자체의 특성이 워케이션 도입 여부에 영향을 미치고 있음이 확인된다.</p><p>제조·IT의 높은 비중은 두 가지 요인이 복합적으로 작용한 결과다. 첫째, 두 업종은 국내 대기업 비중이 높고 <strong>복지 예산의 제도화 수준이 상대적으로 앞서 있다</strong>. 둘째, 팬데믹 기간 동안 재택·원격 근무를 가장 광범위하게 경험한 업종으로, '일하는 장소가 달라져도 업무가 가능하다'는 인식이 조직 내에 이미 자리 잡혀 있다. 반대로 말하면, 아직 비중이 낮은 업종들은 <strong>복지 예산 구조나 원격 근무 경험의 차이가 도입을 늦추고 있을 가능성</strong>이 높다.</p></div></div>
+  <div class="cblock">
+  <div class="ct">워케이션 예약자 연령대</div>
+  <div class="cbox" id="c03"></div>
+  <div class="src">출처: 여기어때 기업회원 이용 데이터 분석</div><div class="cmt">💬 birth_year 없는 회원 제외 · 약 1만명</div>
+</div>
+<div class="cblock">
+  <div class="ct">기업규모별 예약 비중 vs ADR</div>
+  <div class="cbox" id="c04"></div>
+  <div class="src">출처: 여기어때 기업회원 이용 데이터 분석</div><div class="cmt">💬 25년 1월~26년 3월 기준</div>
+</div>
+<div class="cblock">
+  <div class="ct">산업군별 예약 비중 TOP 10</div>
+  <div class="cbox" id="c05"></div>
+  <div class="src">출처: 여기어때 기업회원 이용 데이터 분석</div><div class="cmt">💬 b2b_company_master 산업군 분류 기준</div>
+</div>
+  <div class="div"></div>
+</div><div class="sec sec3">
+  <div class="sec-hd">
+    <div class="sec-tag">SECTION 03</div>
+    <div class="sec-h2">한번 쓴 기업은 왜 계속 쓰는가</div>
+  </div>
+  <div class="sblock"><div class="sn">한번 이용한 기업의 86.3%가 재이용한다</div><div class="ins"><p style="margin-bottom:14px;">워케이션을 한번 도입한 기업의 <strong>86.3%가 반복 이용</strong>한다. 2~5회 반복 이용 기업이 42.3%로 가장 큰 비중을 차지하고, 11회 이상 상시적으로 활용하는 기업도 21.9%에 달한다. 이탈률은 13.7%에 불과하다. 이 수치들이 말하는 것은 워케이션이 유행처럼 한번 시도하고 사라지는 소비가 아니라, 도입한 기업에서는 복지 제도로 자리잡는 구조적 경향이 있다는 것이다.</p><p>재이용률이 높은 이유는 수요의 발생 방식에 있다. 처음 워케이션을 경험한 임직원은 그 경험을 주변에 공유하고, 다음 시즌에 다시 신청한다. 그 수요가 쌓이면 기업 입장에서는 제도를 유지할 근거가 생기고, 유지된 제도는 또 다른 첫 경험자를 만들어낸다. <strong>자기강화적 순환 구조</strong>가 형성되는 것이다. 워케이션 도입을 망설이고 있다면, 이 데이터가 제시하는 메시지는 단순하다. 첫 번째 도입의 허들을 넘기만 하면, 제도는 스스로 지속될 가능성이 높다.</p></div></div>
+<div class="sblock"><div class="sn">Biz 포인트 도입 기업, 동규모 대비 3.2배 더 많이 쓴다</div><div class="ins"><p style="margin-bottom:14px;">전체 기업 중 Biz 포인트를 도입한 비중은 10.7%에 불과하지만, 이들이 창출하는 워케이션 예약 비중은 34.7%에 달한다. <strong>기업 수 비중 대비 3.2배의 예약 집중도</strong>다. 복지포인트 제도의 유무가 실제 이용 빈도를 결정적으로 가른다는 것이 데이터로 확인되는 지점이다. 워케이션 예산을 일반 복지포인트에 포함시키는 것과, 워케이션 용도로 목적을 지정해 별도로 지급하는 것 사이에는 실행률 측면에서 3배 이상의 격차가 발생한다.</p><p>이 차이는 인간의 소비 행동 방식에서 비롯된다. 용도가 지정되지 않은 포인트는 선택지가 너무 많아 결정을 미루게 되고, 결국 사용되지 않거나 익숙한 방식으로만 소비된다. 반면 '워케이션에 쓰세요'라는 목적이 명확히 부여된 포인트는 임직원의 탐색과 예약 행동을 직접적으로 촉발한다. <strong>복지 예산의 크기를 늘리는 것보다, 사용 목적을 어떻게 설계하느냐가 실행률을 결정</strong>한다는 것이다. 워케이션을 활성화하고 싶다면, 예산을 늘리기 전에 목적을 지정하는 것이 먼저다.</p></div></div>
+  <div class="cblock">
+  <div class="ct">워케이션 도입 기업 반복 이용률</div>
+  <div class="cbox" id="c06"></div>
+  <div class="src">출처: 여기어때 기업회원 이용 데이터 분석</div>
+</div>
+<div class="cblock">
+  <div class="ct">Biz 포인트 도입 기업의 워케이션 집중도</div>
+  <div class="cbox" id="c07"></div>
+  <div class="src">출처: 여기어때 기업회원 이용 데이터 분석</div><div class="cmt">💬 복지포인트 도입 여부 기준</div>
+</div>
+  <div class="div"></div>
+</div><div class="sec sec4">
+  <div class="sec-hd">
+    <div class="sec-tag">SECTION 04</div>
+    <div class="sec-h2">워케이션 수요는 언제 집중되는가</div>
+  </div>
+  <div class="sblock"><div class="sn">워케이션 수요는 8월과 10월에 집중된다</div><div class="ins"><p style="margin-bottom:14px;">워케이션 이용은 <strong>8월(13.9%)과 10월(10.4%)에 집중되는 2강 구조</strong>를 형성한다. 여름 성수기와 단풍·여행 시즌이 겹치는 두 달이 연간 수요의 약 24%를 흡수한다. 반면 3월(5.1%)이 연중 최저를 기록하고 봄(3~4월) 전반이 상대적으로 낮은 수준에 머무른다. 연말·신년 시즌인 12월(9.8%)과 1월(8.0%)도 비교적 높은 편으로, 워케이션 수요가 일반 여행 패턴과 상당히 유사한 계절성을 따르고 있음을 알 수 있다.</p><p>이 계절 패턴은 HR 담당자에게 복지 예산 집행 캘린더를 설계하는 데 직접적인 기준을 제공한다. 수요가 몰리는 시즌에 포인트가 집행될 수 있으려면, 그 시즌보다 최소 한두 달 앞서 제도 안내와 예산 편성이 완료되어야 한다. <strong>여름 시즌을 겨냥한다면 5~6월이, 가을 시즌을 겨냥한다면 8~9월이 준비의 최적 시점</strong>이다. 지금 이 시점, 즉 4~5월은 올해 여름 워케이션 수요를 만들 수 있는 마지막 골든타임에 해당한다.</p></div></div>
+<div class="sblock"><div class="sn">검색 피크(3월)와 예약 피크(7월) 사이, 4개월의 결정 시차</div><div class="ins"><p style="margin-bottom:14px;">네이버 검색 데이터와 실제 예약 지수를 함께 보면, 두 곡선 사이에 <strong>약 4개월의 시차</strong>가 존재한다는 사실이 확인된다. 검색은 3월에 연중 최고점(100)을 기록하지만, 실제 예약은 7월에 피크를 이루고 7~8월에 집중된다. 봄에 워케이션을 탐색하고 고민하기 시작해, 여름 직전에 비로소 예약이라는 행동으로 전환되는 의사결정 구조가 데이터로 확인되는 것이다. 흥미로운 점은 예약이 집중되는 7월에는 검색 지수가 이미 60~76 수준으로 낮아져 있다는 것이다. 예약 결정이 그 시점의 검색 활동과는 독립적으로 이루어지고 있다는 의미다.</p><p>이 4개월의 시차는 기업 HR 담당자에게 개입 타이밍을 알려주는 신호로 읽어야 한다. <strong>임직원들이 워케이션을 검색하고 고민하는 3~5월</strong>은 관심이 가장 높은 시점이지만, 동시에 실행으로 이어지지 못하는 결정 장벽이 가장 높은 시점이기도 하다. 이 시점에 복지 제도 안내, 포인트 지급 일정, 추천 숙소 정보를 적극적으로 제공하면 임직원의 검색 에너지를 실제 예약으로 전환하는 촉매 역할을 할 수 있다. <strong>수요는 이미 존재한다. 기업이 해야 할 일은 그 수요가 실행으로 이어질 수 있도록 환경을 만드는 것이다.</strong></p></div></div>
+  <div class="cblock">
+  <div class="ct">월별 워케이션 이용 비중</div>
+  <div class="cbox" id="c08"></div>
+  <div class="src">출처: 여기어때 기업회원 이용 데이터 분석</div>
+</div>
+<div class="cblock">
+  <div class="ct">워케이션 검색량 vs 예약 지수</div>
+  <div class="cbox" id="c09"></div>
+  <div class="src">출처: 네이버 데이터랩 2025 / 여기어때 기업회원 이용 데이터 분석</div><div class="cmt">💬 예약 지수 = 월별 건수/최대건수×100 / 검색 지수 = 네이버 상대지수</div>
+</div>
+  <div class="div"></div>
+</div><div class="sec sec5">
+  <div class="sec-hd">
+    <div class="sec-tag">SECTION 05</div>
+    <div class="sec-h2">워케이션 1인당 소비의 실제 규모</div>
+  </div>
+  <div class="sblock"><div class="sn">기업회원은 같은 지역에서도 12% 더 높은 숙소를 선택한다</div><div class="ins"><p style="margin-bottom:14px;">여기어때 비즈니스 기업회원의 전체 평균 ADR은 177,550원으로, 동일 조건의 일반회원(158,583원) 대비 <strong>12% 높다</strong>. 단순히 더 비싼 지역을 선택하는 것이 아니라, 같은 지역 안에서도 더 높은 등급의 숙소를 고른다는 의미다. 지역별로 보면 강원(+21%), 인천(+17%), 경북(+11%) 순으로 프리미엄 경향이 두드러지며, 워케이션 수요가 집중되는 강원과 제주에서 이 격차가 특히 뚜렷하게 나타난다. 서울은 비즈니스 출장 목적의 고가 일반 예약이 많아 일반회원 ADR이 오히려 높은 예외적 사례로, 워케이션 목적지로서의 성격이 약한 지역임을 역설적으로 확인시켜 준다.</p><p>이 격차는 복지 예산을 활용하는 소비의 구조적 특성에서 비롯된다. 개인 비용으로 여행할 때는 가격 대비 가치를 따지는 기준이 작동하지만, 복지포인트나 법인 예산을 활용할 때는 선택의 기준이 달라진다. <strong>일상의 소비 기준보다 한 단계 높은 숙소를 선택하는 경향</strong>이 생기고, 그 결과가 ADR 격차로 나타난다. 워케이션 복지를 설계할 때 숙소 등급 기준을 너무 낮게 잡으면, 임직원의 실제 선호와 괴리가 생길 수 있다.</p></div></div>
+<div class="sblock"><div class="sn">워케이션 참여자 1인의 실제 총소비는 약 114만원</div><div class="ins"><p style="margin-bottom:14px;">워케이션 참여자 1인당 실제 총소비는 약 <strong>114만원</strong>으로, 이 수치는 기업이 지원하는 숙박비 이상의 소비가 현지에서 자발적으로 발생한다는 것을 보여준다. 숙박비(34.5%)와 식음료비(34.5%)가 거의 동일한 비중으로 구성되며, 교통·쇼핑(23.1%)과 레저·액티비티(7.9%)까지 합산하면 숙박 외 소비가 전체의 65.5%를 차지한다. 워케이션이 단순히 숙소를 빌리는 행위가 아니라, 현지에서의 생활 전반에 걸친 체류형 소비 행태임을 보여주는 수치다.</p><p>기업 입장에서 이 구조가 가지는 의미는 두 가지다. 첫째, 복지포인트로 숙박비 일부를 지원하더라도 임직원은 그 이상의 금액을 개인 비용으로 추가 지출한다. <strong>기업의 지원 1원이 현지에서 약 3원의 실제 소비를 만들어내는 구조</strong>다. 둘째, 이는 워케이션이 임직원에게 단순한 숙박 할인 혜택이 아니라, 일상과 다른 완결된 체류 경험을 제공한다는 것을 의미한다. 복지 제도로서의 체감 가치가 지원 금액 자체보다 훨씬 크게 작용할 수 있는 이유다.</p></div></div>
+<div class="sblock"><div class="sn">지자체 지원금으로 기업 실질 부담을 낮출 수 있다</div><div class="ins"><p style="margin-bottom:14px;">워케이션 도입을 검토하는 기업이라면, 기업 예산만으로 모든 비용을 감당해야 한다는 전제부터 내려놓을 필요가 있다. 2026년 기준 주요 지자체들은 워케이션 유치 지원을 오히려 확대하고 있다. 제주도는 민간형 바우처 방식으로 <strong>1인당 최대 30만원</strong>을 지원하며, 부산은 한국관광공사 '워케이션 우수모델'로 선정되어 국비 2억원을 확보하고 기업 맞춤형 유치 지원을 강화하는 중이다. 강원은 주중 연박 체류 시 숙박·레저 할인을 연계하고, 충남은 올해 상반기(4월 15일~6월 30일) 연박 기간이 길수록 지원 단가가 커지는 구조로 사업을 운영 중이다.</p><p>1인 총소비 114만원 중 숙박비가 약 39만원 수준임을 감안하면, 지자체 지원금만으로도 숙박비의 상당 부분이 커버된다. 기업이 복지포인트로 나머지를 일부 지원할 경우, 임직원 실질 부담은 크게 낮아진다. 단, 지원 조건과 모집 시기는 지자체마다 다르고, 선착순 마감이 많다. 복지 기획 일정을 짤 때 공고 확인을 먼저 넣어두는 것이 실질적인 첫 번째 단계다.</p></div></div>
+  <div class="cblock">
+  <div class="ct">지역별 일반 vs 기업회원 ADR</div>
+  <div class="cbox" id="c10"></div>
+  <div class="src">출처: 여기어때 기업회원 이용 데이터 분석</div>
+</div>
+<div class="cblock">
+  <div class="ct">워케이션 1인 평균 소비 구성</div>
+  <div class="cbox" id="c11"></div>
+  <div class="src">출처: 조선일보(2026.01.05), 제주창조경제혁신센터 / 여기어때 기업회원 이용 데이터 분석</div><div class="cmt">💬 외부 설문 기반 추정치 (식음료 34.5% / 교통쇼핑 23.1% / 레저 7.9%)</div>
+</div>
+<div class="cblock">
+  <div class="ct">지자체 워케이션 지원금 현황</div>
+  <div class="cbox" id="c12"></div>
+  <div class="src">출처: 각 지자체 2026년 공고 기준</div>
+</div>
+  <div class="div"></div>
+</div><div class="sec" style="max-width:var(--W);margin:0 auto;padding:0 48px 0;">
+  <div style="padding:40px 0 18px;border-bottom:2px solid #1A1A18;margin-bottom:36px;">
+    <div style="font-size:10px;font-weight:700;color:#1A1A18;letter-spacing:.12em;margin-bottom:7px;">결언</div>
+    <div style="font-size:24px;font-weight:700;line-height:1.3;margin-bottom:6px;">워케이션은 도입하는 순간 계속된다</div>
+  </div>
+  <div style="font-size:13px;color:#3A3A38;line-height:1.95;margin-bottom:44px;">
+    <p style="margin-bottom:18px;">이 브리프가 제시한 데이터들은 하나의 공통된 방향을 가리킨다. <strong style="color:#1A1A18;">워케이션은 도입을 결정한 기업이 계속 쓰는 제도</strong>라는 것이다.</p>
+    <p style="margin-bottom:18px;">한번 이용한 기업의 86.3%가 재이용하고, Biz 포인트를 연결한 기업은 그렇지 않은 기업보다 3.2배 많은 예약을 창출한다. 30·40대 중간관리직이 주도하고, 8월과 10월에 집중되며, 참여자 1인당 실제 총소비는 약 114만원에 달한다. 이 숫자들이 말하는 것은 "워케이션이 인기 있다"가 아니다. <strong style="color:#1A1A18;">"워케이션을 제대로 설계한 기업에서는 제도가 자생적으로 작동한다"</strong>는 것이다.</p>
+    <p style="margin-bottom:18px;">반대로 이 데이터들은 워케이션을 아직 도입하지 않았거나, 도입했지만 형식적으로 운영하고 있는 기업에게는 다른 메시지를 전달한다. 도입 장벽이 낮아졌고, 지자체 지원금이라는 외부 레버리지까지 존재한다. 검색은 봄에 집중되고 예약은 여름에 이루어진다. <strong style="color:#1A1A18;">지금 이 시점, 즉 5월을 앞둔 지금이 워케이션 제도를 기획하고 포인트를 편성하기에 가장 적절한 타이밍이다.</strong></p>
+    <p>워케이션은 트렌드를 쫓는 행위가 아니다. 일하는 장소의 자유를 복지로 제도화하고, 그 경험이 임직원의 만족으로 이어지도록 설계하는 일이다. 잘 쓰는 기업은 이미 그 구조를 만들었고, 데이터가 그것을 증명하고 있다.</p>
+  </div>
+</div></div>
+<div class="footer"><div class="fi">
+  <div class="ft">본 브리프는 여기어때 B2B 기업회원 실적 데이터를 기반으로 작성되었습니다.<br>수치는 내부 분석 기준이며 외부 공개 시 별도 검토가 필요합니다.</div>
+  <div class="fl">여기어때 Biz</div>
+</div></div>
+<script>
+const D=JSON.parse(document.getElementById('CD').textContent);
+const fp=v=>v.toFixed(1)+'%';
+const fw=v=>Math.round(v).toLocaleString()+'원';
+/* ════ 차트 렌더링 ════ */
+
+/* C01: 리드타임 */
+(()=>{
+  const d=D.s01;
+  const allV=d.rows.reduce((a,r)=>{a.push(r.general);if(r.wc)a.push(r.wc);return a;},[]);
+  const mx=Math.max(...allV);
+  document.getElementById('c01').innerHTML=d.rows.map(r=>{
+    const gw=(r.general/mx*100).toFixed(1);
+    const ww=r.wc?(r.wc/mx*100).toFixed(1):null;
+    const diff=r.wc?((r.wc-r.general)/r.general*100).toFixed(1):null;
+    return `<div style="margin-bottom:13px">
+      <div style="font-size:11px;font-weight:600;color:var(--gd);margin-bottom:5px">${r.label}</div>
+      <div style="display:flex;align-items:center;gap:7px;margin-bottom:3px">
+        <span style="font-size:9px;color:var(--gm);min-width:50px">일반</span>
+        <div style="flex:1;height:14px;background:var(--gl);border-radius:2px;overflow:hidden"><div style="width:${gw}%;height:100%;background:#C8C6C0"></div></div>
+        <span style="font-size:10px;color:var(--gd);min-width:36px">${r.general.toFixed(1)}일</span>
+      </div>
+      ${ww?`<div style="display:flex;align-items:center;gap:7px">
+        <span style="font-size:9px;color:var(--or);min-width:50px;font-weight:700">워케이션</span>
+        <div style="flex:1;height:14px;background:var(--orl);border-radius:2px;overflow:hidden"><div style="width:${ww}%;height:100%;background:var(--or)"></div></div>
+        <span style="font-size:10px;font-weight:700;color:var(--or);min-width:36px">${r.wc.toFixed(1)}일</span>
+        <span style="font-size:10px;color:var(--gn);font-weight:700">+${diff}%</span>
+      </div>`:`<div style="font-size:9px;color:var(--gm);padding-left:57px;font-style:italic">워케이션 비교 대상 없음</div>`}
+    </div>`;
+  }).join('');
+})();
+
+/* C02: 요일 히트맵 */
+(()=>{
+  const d=D.s02;
+  const all=[...d.general,...d.wc];
+  const mn=Math.min(...all),mx=Math.max(...all);
+  function lerp(a,b,t){return Math.round(a+(b-a)*t);}
+  function gc(v){const t=(v-mn)/(mx-mn);const r=lerp(245,229,t),g=lerp(245,80,t),b=lerp(242,58,t);const lum=.299*r+.587*g+.114*b;return{bg:`rgb(${r},${g},${b})`,fg:lum>160?'var(--gd)':'white'};}
+  const mkRow=(lbl,vals,isWc)=>`<tr><td style="padding:6px 8px;font-size:9px;font-weight:600;background:var(--gl);border:1px solid #E0DED8;white-space:nowrap;color:${isWc?'var(--or)':'var(--gd)'}">${lbl}</td>${vals.map(v=>{const{bg,fg}=gc(v);return`<td style="background:${bg};color:${fg};padding:6px 2px;text-align:center;font-size:9px;font-weight:700;border:1px solid #E0DED8;min-width:32px">${v.toFixed(1)}%</td>`;}).join('')}</tr>`;
+  const thead=`<tr><th style="background:var(--gl);padding:5px;font-size:9px;border:1px solid #E0DED8;min-width:60px"></th>${d.days.map(dy=>`<th style="background:var(--gl);padding:5px 2px;font-size:9px;text-align:center;border:1px solid #E0DED8;font-weight:700">${dy}</th>`).join('')}</tr>`;
+  const scale=Array.from({length:7},(_,i)=>{const t=i/6;const r=lerp(245,229,t),g=lerp(245,80,t),b=lerp(242,58,t);return`<div style="width:20px;height:10px;background:rgb(${r},${g},${b})"></div>`;}).join('');
+  document.getElementById('c02').innerHTML=`<div style="overflow-x:auto"><table style="border-collapse:collapse;width:100%"><thead>${thead}</thead><tbody>${mkRow('1~2박 일반',d.general,false)}${mkRow('워케이션',d.wc,true)}</tbody></table></div><div style="display:flex;gap:3px;align-items:center;margin-top:8px;font-size:9px;color:var(--gm)"><span>낮음</span>${scale}<span>높음</span></div>`;
+})();
+
+/* C03: 연령대 도넛 */
+(()=>{
+  const d=D.s03;
+  const C={'20대':'#C8C6C0','30대':'#E5503A','40대':'#E87A65','50대+':'#F4B4A8'};
+  const cx=75,cy=75,R=62,ri=40;let ang=-Math.PI/2;
+  const paths=d.rows.map(r=>{const a=r.pct/100*Math.PI*2;const x1=cx+R*Math.cos(ang),y1=cy+R*Math.sin(ang),x2=cx+R*Math.cos(ang+a),y2=cy+R*Math.sin(ang+a);const x3=cx+ri*Math.cos(ang+a),y3=cy+ri*Math.sin(ang+a),x4=cx+ri*Math.cos(ang),y4=cy+ri*Math.sin(ang);const lg=a>Math.PI?1:0;ang+=a;return`<path d="M${x1},${y1} A${R},${R},0,${lg},1,${x2},${y2} L${x3},${y3} A${ri},${ri},0,${lg},0,${x4},${y4} Z" fill="${C[r.label]}" stroke="white" stroke-width="2"/>`;}).join('');
+  const legend=d.rows.map(r=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--gl)"><div style="display:flex;align-items:center;gap:7px"><div style="width:9px;height:9px;border-radius:50%;background:${C[r.label]};flex-shrink:0"></div><span style="font-size:11px;font-weight:600">${r.label}</span><span style="font-size:10px;color:var(--gm)">${r.role}</span></div><span style="font-size:13px;font-weight:700;color:${C[r.label]}">${fp(r.pct)}</span></div>`).join('');
+  document.getElementById('c03').innerHTML=`<div style="display:flex;align-items:center;gap:20px"><svg viewBox="0 0 150 150" style="width:140px;flex-shrink:0">${paths}<text x="${cx}" y="${cy-7}" text-anchor="middle" font-size="10" fill="var(--gm)">주력</text><text x="${cx}" y="${cy+10}" text-anchor="middle" font-size="11" font-weight="700" fill="var(--or)">30·40대</text><text x="${cx}" y="${cy+26}" text-anchor="middle" font-size="15" font-weight="700" fill="var(--bk)">79.3%</text></svg><div style="flex:1">${legend}</div></div>`;
+})();
+
+/* C04: 기업규모 */
+(()=>{
+  const d=D.s04;
+  const mx=Math.max(...d.rows.map(r=>r.share));
+  document.getElementById('c04').innerHTML=d.rows.map(r=>`<div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:11px;font-weight:600;color:var(--gd)">${r.label}</span><span style="font-size:10px;color:var(--gm)">${fw(r.adr)}/박</span></div><div style="height:18px;background:var(--gl);border-radius:2px;overflow:hidden;position:relative"><div style="width:${(r.share/mx*100).toFixed(1)}%;height:100%;background:var(--or);opacity:.85"></div><span style="position:absolute;left:8px;top:2px;font-size:10px;font-weight:700;color:white">${fp(r.share)}</span></div></div>`).join('');
+})();
+
+/* C05: 산업군 */
+(()=>{
+  const d=D.s05;
+  const mx=d.rows[0].share;
+  const C=['#E5503A','#E87A65','#1A5FA8','#4A8FD8','#0F8070','#3AA890','#6B4CA8','#9A7CD8','#C47A1A','#C8C6C0'];
+  document.getElementById('c05').innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 24px">`+d.rows.map((r,i)=>`<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--gl)"><span style="font-size:10px;font-weight:600;color:var(--gd);min-width:48px">${i+1}. ${r.label}</span><div style="flex:1;height:12px;background:var(--gl);border-radius:2px;overflow:hidden"><div style="width:${(r.share/mx*100).toFixed(1)}%;height:100%;background:${C[i]}"></div></div><span style="font-size:10px;font-weight:700;color:${C[i]};min-width:32px">${fp(r.share)}</span></div>`).join('')+'</div>';
+})();
+
+/* C06: 반복이용률 */
+(()=>{
+  const freq=D.s06.freq.map(r=>({label:r.l,pct:r.p,color:r.c}));
+  const cx=75,cy=75,R=62,ri=40;let ang=-Math.PI/2;
+  const paths=freq.map(r=>{const a=r.pct/100*Math.PI*2;const x1=cx+R*Math.cos(ang),y1=cy+R*Math.sin(ang),x2=cx+R*Math.cos(ang+a),y2=cy+R*Math.sin(ang+a);const x3=cx+ri*Math.cos(ang+a),y3=cy+ri*Math.sin(ang+a),x4=cx+ri*Math.cos(ang),y4=cy+ri*Math.sin(ang);const lg=a>Math.PI?1:0;ang+=a;return`<path d="M${x1},${y1} A${R},${R},0,${lg},1,${x2},${y2} L${x3},${y3} A${ri},${ri},0,${lg},0,${x4},${y4} Z" fill="${r.color}" stroke="white" stroke-width="2"/>`;}).join('');
+  const legend=freq.map(r=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--gl)"><div style="display:flex;align-items:center;gap:7px"><div style="width:9px;height:9px;border-radius:50%;background:${r.color};flex-shrink:0"></div><span style="font-size:11px;font-weight:600">${r.label}</span></div><span style="font-size:13px;font-weight:700;color:${r.color}">${fp(r.pct)}</span></div>`).join('');
+  document.getElementById('c06').innerHTML=`<div style="display:flex;align-items:center;gap:20px"><svg viewBox="0 0 150 150" style="width:140px;flex-shrink:0">${paths}<text x="${cx}" y="${cy-7}" text-anchor="middle" font-size="10" fill="var(--gm)">재이용률</text><text x="${cx}" y="${cy+14}" text-anchor="middle" font-size="18" font-weight="700" fill="var(--gn)">86.3%</text></svg><div style="flex:1">${legend}</div></div>`;
+})();
+
+/* C07: Biz 포인트 */
+(()=>{
+  const d=D.s07;
+  const lev=(d.rows[0].booking_pct/d.rows[0].co_pct).toFixed(1);
+  const rows=d.rows.map(r=>{
+    const isMain=r.color==='#E5503A';
+    return `<div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:700;color:${isMain?'var(--or)':'var(--gm)'};margin-bottom:10px">${r.label}</div>
+      <div style="margin-bottom:6px">
+        <div style="font-size:10px;color:var(--gm);margin-bottom:3px">기업 비중</div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="flex:1;height:14px;background:var(--gl);border-radius:2px;overflow:hidden">
+            <div style="width:${r.co_pct}%;height:100%;background:${isMain?'var(--or)':'#C8C6C0'};opacity:.75"></div>
+          </div>
+          <span style="font-size:12px;font-weight:700;color:${isMain?'var(--or)':'var(--gm)'};min-width:36px">${r.co_pct.toFixed(1)}%</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;color:var(--gm);margin-bottom:3px">예약 비중</div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="flex:1;height:22px;background:var(--gl);border-radius:2px;overflow:hidden">
+            <div style="width:${r.booking_pct}%;height:100%;background:${isMain?'var(--or)':'#C8C6C0'}"></div>
+          </div>
+          <span style="font-size:15px;font-weight:700;color:${isMain?'var(--or)':'var(--gm)'};min-width:40px">${r.booking_pct.toFixed(1)}%</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('c07').innerHTML=`<div>${rows}</div><div style="padding:14px 16px;background:var(--orl);border-left:3px solid var(--or);display:flex;justify-content:space-between;align-items:center;margin-top:4px"><span style="font-size:12px;color:var(--gd)">Biz 포인트 도입 기업의 예약 집중도</span><span style="font-size:28px;font-weight:700;color:var(--or)">${lev}<span style="font-size:14px">배</span></span></div>`;
+})();
+
+/* C08: 월별 이용 */
+(()=>{
+  const d=D.s08;
+  const mx=Math.max(...d.values);
+  const W=760,H=200,PL=28,PR=8,PT=16,PB=28;
+  const pw=W-PL-PR,ph=H-PT-PB,bw=pw/d.months.length;
+  const sy=v=>PT+ph-(v/mx)*ph;
+  const bars=d.values.map((v,i)=>{const x=PL+i*bw+2,bh=(v/mx)*ph;const col=v>=10?'var(--or)':v>=7?'#E87A65':'#C8C6C0';return`<rect x="${x}" y="${sy(v)}" width="${bw-4}" height="${bh}" fill="${col}" opacity="0.9" rx="1"/><text x="${x+(bw-4)/2}" y="${sy(v)-3}" text-anchor="middle" font-size="7.5" font-weight="${v>=10?700:400}" fill="${v>=10?'var(--or)':'var(--gm)'}">${v.toFixed(1)}</text><text x="${x+(bw-4)/2}" y="${H-7}" text-anchor="middle" font-size="7.5" fill="var(--gm)">${d.months[i].replace('월','')}</text>`;}).join('');
+  document.getElementById('c08').innerHTML=`<svg viewBox="0 0 ${W} ${H}" style="width:100%"><line x1="${PL}" y1="${PT}" x2="${PL}" y2="${PT+ph}" stroke="#E0DED8"/><line x1="${PL}" y1="${PT+ph}" x2="${W-PR}" y2="${PT+ph}" stroke="#E0DED8"/>${[5,10,15].map(v=>`<line x1="${PL}" y1="${sy(v)}" x2="${W-PR}" y2="${sy(v)}" stroke="#F0EFE8"/><text x="${PL-3}" y="${sy(v)+3}" text-anchor="end" font-size="7" fill="var(--gm)">${v}%</text>`).join('')}${bars}</svg>`;
+})();
+
+/* C09: 검색 vs 예약 */
+(()=>{
+  const d=D.s09;
+  const W=760,H=210,PL=28,PR=8,PT=16,PB=30,mx=100;
+  const pw=W-PL-PR,ph=H-PT-PB;
+  const sx=i=>PL+i/(d.months.length-1)*pw;
+  const sy=v=>PT+ph-(v/mx)*ph;
+  const sL=d.search.map((v,i)=>`${sx(i)},${sy(v)}`).join(' ');
+  const bL=d.booking.map((v,i)=>`${sx(i)},${sy(v)}`).join(' ');
+  const sDots=d.search.map((v,i)=>`<circle cx="${sx(i)}" cy="${sy(v)}" r="3" fill="#1A5FA8" stroke="white" stroke-width="1.5"/>`).join('');
+  const bDots=d.booking.map((v,i)=>`<circle cx="${sx(i)}" cy="${sy(v)}" r="3" fill="var(--or)" stroke="white" stroke-width="1.5"/>`).join('');
+  const xL=d.months.map((m,i)=>`<text x="${sx(i)}" y="${H-8}" text-anchor="middle" font-size="7.5" fill="var(--gm)">${m.replace('월','')}</text>`).join('');
+  const yT=[25,50,75,100].map(v=>`<line x1="${PL}" y1="${sy(v)}" x2="${W-PR}" y2="${sy(v)}" stroke="#F0EFE8"/><text x="${PL-3}" y="${sy(v)+3}" text-anchor="end" font-size="7" fill="var(--gm)">${v}</text>`).join('');
+  document.getElementById('c09').innerHTML=`<svg viewBox="0 0 ${W} ${H}" style="width:100%"><line x1="${PL}" y1="${PT}" x2="${PL}" y2="${PT+ph}" stroke="#E0DED8"/><line x1="${PL}" y1="${PT+ph}" x2="${W-PR}" y2="${PT+ph}" stroke="#E0DED8"/>${yT}<polyline points="${sL}" fill="none" stroke="#1A5FA8" stroke-width="2" stroke-linejoin="round"/><polyline points="${bL}" fill="none" stroke="var(--or)" stroke-width="2" stroke-linejoin="round"/>${sDots}${bDots}${xL}</svg><div style="display:flex;gap:12px;margin-top:6px"><div style="display:flex;align-items:center;gap:5px;font-size:10px"><div style="width:10px;height:3px;background:#1A5FA8;border-radius:2px"></div><span style="color:#3A3A38">검색 지수</span></div><div style="display:flex;align-items:center;gap:5px;font-size:10px"><div style="width:10px;height:3px;background:var(--or);border-radius:2px"></div><span style="color:#3A3A38">예약 지수</span></div></div>`;
+})();
+
+/* C10: ADR 비교 */
+(()=>{
+  const d=D.s10;
+  const mx=Math.max(...d.rows.flatMap(r=>[r.general,r.biz]));
+  const avgGap=((d.avg_biz-d.avg_general)/d.avg_general*100).toFixed(1);
+  const summary=`<div style="display:flex;gap:8px;margin-bottom:12px;padding:10px;background:var(--gl)"><div style="flex:1;text-align:center"><div style="font-size:9px;color:var(--gm);margin-bottom:2px">일반 평균</div><div style="font-size:16px;font-weight:700;color:var(--gd)">${Math.round(d.avg_general/1000)}k원</div></div><div style="flex:1;text-align:center;border-left:1px solid #E0DED8"><div style="font-size:9px;color:var(--or);margin-bottom:2px">기업 평균</div><div style="font-size:16px;font-weight:700;color:var(--or)">${Math.round(d.avg_biz/1000)}k원</div></div><div style="flex:1;text-align:center;border-left:1px solid #E0DED8"><div style="font-size:9px;color:var(--gn);margin-bottom:2px">프리미엄</div><div style="font-size:16px;font-weight:700;color:var(--gn)">+${avgGap}%</div></div></div>`;
+  const rows=d.rows.map(r=>{const gap=((r.biz-r.general)/r.general*100).toFixed(1);const pos=r.biz>r.general;return`<div style="margin-bottom:8px"><div style="display:flex;justify-content:space-between;margin-bottom:2px"><span style="font-size:10px;font-weight:600">${r.label}</span><span style="font-size:10px;font-weight:700;color:${pos?'var(--gn)':'var(--or)'}">${pos?'+':''}${gap}%</span></div><div style="display:flex;align-items:center;gap:5px;margin-bottom:2px"><span style="font-size:9px;color:var(--gm);min-width:36px">일반</span><div style="flex:1;height:10px;background:var(--gl);border-radius:1px;overflow:hidden"><div style="width:${(r.general/mx*100).toFixed(1)}%;height:100%;background:#C8C6C0"></div></div><span style="font-size:9px;color:var(--gm);min-width:46px;text-align:right">${Math.round(r.general/1000)}k</span></div><div style="display:flex;align-items:center;gap:5px"><span style="font-size:9px;color:var(--or);min-width:36px;font-weight:700">기업</span><div style="flex:1;height:10px;background:var(--orl);border-radius:1px;overflow:hidden"><div style="width:${(r.biz/mx*100).toFixed(1)}%;height:100%;background:var(--or)"></div></div><span style="font-size:9px;font-weight:700;color:var(--or);min-width:46px;text-align:right">${Math.round(r.biz/1000)}k</span></div></div>`;}).join('');
+  document.getElementById('c10').innerHTML=summary+`<div style="max-height:260px;overflow-y:auto">${rows}</div>`;
+})();
+
+/* C11: 소비 구성 */
+(()=>{
+  const d=D.s11;
+  const cx=75,cy=75,R=62,ri=40;let ang=-Math.PI/2;
+  const paths=d.rows.map(r=>{const a=r.pct/100*Math.PI*2;const x1=cx+R*Math.cos(ang),y1=cy+R*Math.sin(ang),x2=cx+R*Math.cos(ang+a),y2=cy+R*Math.sin(ang+a);const x3=cx+ri*Math.cos(ang+a),y3=cy+ri*Math.sin(ang+a),x4=cx+ri*Math.cos(ang),y4=cy+ri*Math.sin(ang);const lg=a>Math.PI?1:0;ang+=a;return`<path d="M${x1},${y1} A${R},${R},0,${lg},1,${x2},${y2} L${x3},${y3} A${ri},${ri},0,${lg},0,${x4},${y4} Z" fill="${r.color}" opacity="0.88" stroke="white" stroke-width="2"/>`;}).join('');
+  const legend=d.rows.map(r=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--gl)"><div style="display:flex;align-items:center;gap:7px"><div style="width:9px;height:9px;border-radius:50%;background:${r.color};flex-shrink:0"></div><span style="font-size:11px">${r.label}</span></div><div style="text-align:right"><div style="font-size:12px;font-weight:700">${Math.round(r.amount/1000)}k원</div><div style="font-size:9px;color:var(--gm)">${fp(r.pct)}</div></div></div>`).join('');
+  document.getElementById('c11').innerHTML=`<div style="display:flex;align-items:center;gap:20px"><svg viewBox="0 0 150 150" style="width:140px;flex-shrink:0">${paths}<text x="${cx}" y="${cy-7}" text-anchor="middle" font-size="10" fill="var(--gm)">1인 총소비</text><text x="${cx}" y="${cy+12}" text-anchor="middle" font-size="14" font-weight="700" fill="var(--bk)">${Math.round(d.total/10000)}만원</text></svg><div style="flex:1">${legend}</div></div>`;
+})();
+
+/* C12 지자체 지원금 */
+(()=>{
+  const subs=[
+    {r:'제주도',p:'제주형 워케이션 활성화 사업',t:'도외 기업·근로자·개인사업자·프리랜서',s:'1인당 최대 30만원 (3박4일~6박7일 차등 지급, 숙박+여가 프로그램 바우처)',d:'2026 상시 모집',c:'#E5503A'},
+    {r:'부산광역시',p:'부산형 워케이션 (2026 우수모델 선정)',t:'수도권 소재 기업 임직원',s:'국비 2억원 확보, 기업 맞춤형 유치 지원 강화',d:'2026 사업 확장 중',c:'#3D52A0'},
+    {r:'강원특별자치도',p:'기업 워케이션 체류형 관광 연계',t:'수도권 기업·기관 대상',s:'주중 2박 이상 숙박 할인쿠폰 + 레저·렌터카 할인 연계',d:'2026 기업 유치형 지속 운영',c:'#0F8070'},
+    {r:'충청남도',p:'2026 워케이션 충남',t:'수도권 기업 임직원',s:'연박 프로모션 (3박 이상 시 혜택 극대화, 단가 단계별 증가)',d:'2026.04.15 ~ 06.30',c:'#6B4CA8'}
+  ];
+  const hdr=`<div style="display:grid;grid-template-columns:110px 1fr 1fr 130px;background:#1A1A18">${['지자체','사업명 / 대상','지원 내용','운영 기간'].map(h=>`<div style="padding:10px 13px;font-size:10px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.04em;border-right:1px solid rgba(255,255,255,.08)">${h}</div>`).join('')}</div>`;
+  const rows=subs.map(s=>`<div style="display:grid;grid-template-columns:110px 1fr 1fr 130px;border-bottom:1px solid #E0DED8;align-items:center"><div style="padding:11px 13px;border-right:1px solid #E0DED8"><div style="font-size:10px;font-weight:700;color:${s.c}">${s.r}</div></div><div style="padding:11px 13px;border-right:1px solid #E0DED8"><div style="font-size:10px;font-weight:600;color:#3A3A38">${s.p}</div><div style="font-size:9px;color:#888780;margin-top:2px">대상: ${s.t}</div></div><div style="padding:11px 13px;border-right:1px solid #E0DED8"><div style="font-size:10px;font-weight:600;color:#1A1A18">${s.s}</div></div><div style="padding:11px 13px"><div style="font-size:10px;color:#888780">${s.d}</div></div></div>`).join('');
+  document.getElementById('c12').innerHTML=`<div style="border:1px solid #E0DED8;overflow:hidden">${hdr}${rows}</div>`;
+})();
+
+</script>
+</body>
+</html>

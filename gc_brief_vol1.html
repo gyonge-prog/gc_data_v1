@@ -93,6 +93,21 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--wh);color:var(--bk);
 .ft{font-size:10px;color:rgba(255,255,255,.25);line-height:1.8;}
 .fl{font-size:11px;font-weight:700;color:var(--or);letter-spacing:.06em;}
 svg text{font-family:'Noto Sans KR',sans-serif;}
+
+@media (max-width:600px){
+  /* 1-1. 시리즈바 폰트 축소 - 줄바꿈 방지 */
+  .series-name{font-size:9px;letter-spacing:.08em;}
+  .series-vol{font-size:11px;margin-left:10px;padding-left:10px;}
+
+  /* 1-2. KPI 2x2 그리드 */
+  .ckpis{grid-template-columns:repeat(2,1fr);}
+  .kpi .n{font-size:14px;}
+  .kpi .l{font-size:10px;}
+}
+
+@media (max-width:600px){
+  .fi{flex-direction:column;align-items:flex-start;gap:12px;}
+}
 </style>
 </head>
 <body>
@@ -239,7 +254,7 @@ svg text{font-family:'Noto Sans KR',sans-serif;}
   </div>
 </div></div>
 <div class="footer"><div class="fi">
-  <div class="ft">본 브리프는 여기어때 B2B 기업회원 실적 데이터를 기반으로 작성되었습니다.<br>수치는 내부 분석 기준이며 외부 공개 시 별도 검토가 필요합니다.</div>
+  <div class="ft">본 브리프는 여기어때 B2B 기업회원 실적 데이터를 기반으로 작성되었습니다. 수치는 내부 분석 기준이며 외부 공개 시 별도 검토가 필요합니다.</div>
   <div class="fl">여기어때 Biz</div>
 </div></div>
 <script>
@@ -294,7 +309,13 @@ const fw=v=>Math.round(v).toLocaleString()+'원';
   const cx=75,cy=75,R=62,ri=40;let ang=-Math.PI/2;
   const paths=d.rows.map(r=>{const a=r.pct/100*Math.PI*2;const x1=cx+R*Math.cos(ang),y1=cy+R*Math.sin(ang),x2=cx+R*Math.cos(ang+a),y2=cy+R*Math.sin(ang+a);const x3=cx+ri*Math.cos(ang+a),y3=cy+ri*Math.sin(ang+a),x4=cx+ri*Math.cos(ang),y4=cy+ri*Math.sin(ang);const lg=a>Math.PI?1:0;ang+=a;return`<path d="M${x1},${y1} A${R},${R},0,${lg},1,${x2},${y2} L${x3},${y3} A${ri},${ri},0,${lg},0,${x4},${y4} Z" fill="${C[r.label]}" stroke="white" stroke-width="2"/>`;}).join('');
   const legend=d.rows.map(r=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--gl)"><div style="display:flex;align-items:center;gap:7px"><div style="width:9px;height:9px;border-radius:50%;background:${C[r.label]};flex-shrink:0"></div><span style="font-size:11px;font-weight:600">${r.label}</span><span style="font-size:10px;color:var(--gm)">${r.role}</span></div><span style="font-size:13px;font-weight:700;color:${C[r.label]}">${fp(r.pct)}</span></div>`).join('');
-  document.getElementById('c03').innerHTML=`<div style="display:flex;align-items:center;gap:20px"><svg viewBox="0 0 150 150" style="width:140px;flex-shrink:0">${paths}<text x="${cx}" y="${cy-7}" text-anchor="middle" font-size="10" fill="var(--gm)">주력</text><text x="${cx}" y="${cy+10}" text-anchor="middle" font-size="11" font-weight="700" fill="var(--or)">30·40대</text><text x="${cx}" y="${cy+26}" text-anchor="middle" font-size="15" font-weight="700" fill="var(--bk)">79.3%</text></svg><div style="flex:1">${legend}</div></div>`;
+  const svgPart=`<svg viewBox="0 0 150 150" style="width:140px;flex-shrink:0">${paths}<text x="${cx}" y="${cy-7}" text-anchor="middle" font-size="10" fill="var(--gm)">주력</text><text x="${cx}" y="${cy+10}" text-anchor="middle" font-size="11" font-weight="700" fill="var(--or)">30·40대</text><text x="${cx}" y="${cy+26}" text-anchor="middle" font-size="15" font-weight="700" fill="var(--bk)">79.3%</text></svg>`;
+  const isMobile=window.innerWidth<=600;
+  if(isMobile){
+    document.getElementById('c03').innerHTML=`<div style="display:flex;justify-content:center">${svgPart}</div><div style="margin-top:12px">${legend}</div>`;
+  } else {
+    document.getElementById('c03').innerHTML=`<div style="display:flex;align-items:center;gap:20px">${svgPart}<div style="flex:1">${legend}</div></div>`;
+  }
 })();
 
 /* C04: 기업규모 */
@@ -349,24 +370,28 @@ const fw=v=>Math.round(v).toLocaleString()+'원';
       </div>
     </div>`;
   }).join('');
-  document.getElementById('c07').innerHTML=`<div>${rows}</div><div style="padding:14px 16px;background:var(--orl);border-left:3px solid var(--or);display:flex;justify-content:space-between;align-items:center;margin-top:4px"><span style="font-size:12px;color:var(--gd)">Biz 포인트 도입 기업의 예약 집중도</span><span style="font-size:28px;font-weight:700;color:var(--or)">${lev}<span style="font-size:14px">배</span></span></div>`;
+  document.getElementById('c07').innerHTML=`<div>${rows}</div><div style="padding:14px 16px;background:var(--orl);border-left:3px solid var(--or);display:flex;justify-content:space-between;align-items:center;margin-top:4px"><span style="font-size:12px;color:var(--gd);line-height:1.5">Biz 포인트 도입 기업의<br>예약 집중도</span><span style="font-size:28px;font-weight:700;color:var(--or);white-space:nowrap">${lev}<span style="font-size:14px">배</span></span></div>`;
 })();
 
 /* C08: 월별 이용 */
 (()=>{
   const d=D.s08;
   const mx=Math.max(...d.values);
-  const W=760,H=200,PL=28,PR=8,PT=16,PB=28;
+  const isMobile=window.innerWidth<=600;
+  const W=isMobile?340:760,H=isMobile?180:200,PL=isMobile?24:28,PR=8,PT=isMobile?20:16,PB=isMobile?28:28;
+  const fw2=isMobile?9:7.5,fl=isMobile?9.5:7.5;
   const pw=W-PL-PR,ph=H-PT-PB,bw=pw/d.months.length;
   const sy=v=>PT+ph-(v/mx)*ph;
-  const bars=d.values.map((v,i)=>{const x=PL+i*bw+2,bh=(v/mx)*ph;const col=v>=10?'var(--or)':v>=7?'#E87A65':'#C8C6C0';return`<rect x="${x}" y="${sy(v)}" width="${bw-4}" height="${bh}" fill="${col}" opacity="0.9" rx="1"/><text x="${x+(bw-4)/2}" y="${sy(v)-3}" text-anchor="middle" font-size="7.5" font-weight="${v>=10?700:400}" fill="${v>=10?'var(--or)':'var(--gm)'}">${v.toFixed(1)}</text><text x="${x+(bw-4)/2}" y="${H-7}" text-anchor="middle" font-size="7.5" fill="var(--gm)">${d.months[i].replace('월','')}</text>`;}).join('');
-  document.getElementById('c08').innerHTML=`<svg viewBox="0 0 ${W} ${H}" style="width:100%"><line x1="${PL}" y1="${PT}" x2="${PL}" y2="${PT+ph}" stroke="#E0DED8"/><line x1="${PL}" y1="${PT+ph}" x2="${W-PR}" y2="${PT+ph}" stroke="#E0DED8"/>${[5,10,15].map(v=>`<line x1="${PL}" y1="${sy(v)}" x2="${W-PR}" y2="${sy(v)}" stroke="#F0EFE8"/><text x="${PL-3}" y="${sy(v)+3}" text-anchor="end" font-size="7" fill="var(--gm)">${v}%</text>`).join('')}${bars}</svg>`;
+  const bars=d.values.map((v,i)=>{const x=PL+i*bw+2,bh=(v/mx)*ph;const col=v>=10?'var(--or)':v>=7?'#E87A65':'#C8C6C0';return`<rect x="${x}" y="${sy(v)}" width="${bw-4}" height="${bh}" fill="${col}" opacity="0.9" rx="1"/><text x="${x+(bw-4)/2}" y="${sy(v)-3}" text-anchor="middle" font-size="${fl}" font-weight="${v>=10?700:400}" fill="${v>=10?'var(--or)':'var(--gm)'}">${v.toFixed(1)}</text><text x="${x+(bw-4)/2}" y="${H-7}" text-anchor="middle" font-size="${fl}" fill="var(--gm)">${d.months[i].replace('월','')}</text>`;}).join('');
+  document.getElementById('c08').innerHTML=`<svg viewBox="0 0 ${W} ${H}" style="width:100%"><line x1="${PL}" y1="${PT}" x2="${PL}" y2="${PT+ph}" stroke="#E0DED8"/><line x1="${PL}" y1="${PT+ph}" x2="${W-PR}" y2="${PT+ph}" stroke="#E0DED8"/>${[5,10,15].map(v=>`<line x1="${PL}" y1="${sy(v)}" x2="${W-PR}" y2="${sy(v)}" stroke="#F0EFE8"/><text x="${PL-3}" y="${sy(v)+3}" text-anchor="end" font-size="${fw2}" fill="var(--gm)">${v}%</text>`).join('')}${bars}</svg>`;
 })();
 
 /* C09: 검색 vs 예약 */
 (()=>{
   const d=D.s09;
-  const W=760,H=210,PL=28,PR=8,PT=16,PB=30,mx=100;
+  const isMobile=window.innerWidth<=600;
+  const W=isMobile?340:760,H=isMobile?190:210,PL=isMobile?24:28,PR=8,PT=isMobile?16:16,PB=isMobile?30:30,mx=100;
+  const fl=isMobile?9:7,fw2=isMobile?9:7.5;
   const pw=W-PL-PR,ph=H-PT-PB;
   const sx=i=>PL+i/(d.months.length-1)*pw;
   const sy=v=>PT+ph-(v/mx)*ph;
@@ -374,8 +399,8 @@ const fw=v=>Math.round(v).toLocaleString()+'원';
   const bL=d.booking.map((v,i)=>`${sx(i)},${sy(v)}`).join(' ');
   const sDots=d.search.map((v,i)=>`<circle cx="${sx(i)}" cy="${sy(v)}" r="3" fill="#1A5FA8" stroke="white" stroke-width="1.5"/>`).join('');
   const bDots=d.booking.map((v,i)=>`<circle cx="${sx(i)}" cy="${sy(v)}" r="3" fill="var(--or)" stroke="white" stroke-width="1.5"/>`).join('');
-  const xL=d.months.map((m,i)=>`<text x="${sx(i)}" y="${H-8}" text-anchor="middle" font-size="7.5" fill="var(--gm)">${m.replace('월','')}</text>`).join('');
-  const yT=[25,50,75,100].map(v=>`<line x1="${PL}" y1="${sy(v)}" x2="${W-PR}" y2="${sy(v)}" stroke="#F0EFE8"/><text x="${PL-3}" y="${sy(v)+3}" text-anchor="end" font-size="7" fill="var(--gm)">${v}</text>`).join('');
+  const xL=d.months.map((m,i)=>`<text x="${sx(i)}" y="${H-8}" text-anchor="middle" font-size="${fl}" fill="var(--gm)">${m.replace('월','')}</text>`).join('');
+  const yT=[25,50,75,100].map(v=>`<line x1="${PL}" y1="${sy(v)}" x2="${W-PR}" y2="${sy(v)}" stroke="#F0EFE8"/><text x="${PL-3}" y="${sy(v)+3}" text-anchor="end" font-size="${fl}" fill="var(--gm)">${v}</text>`).join('');
   document.getElementById('c09').innerHTML=`<svg viewBox="0 0 ${W} ${H}" style="width:100%"><line x1="${PL}" y1="${PT}" x2="${PL}" y2="${PT+ph}" stroke="#E0DED8"/><line x1="${PL}" y1="${PT+ph}" x2="${W-PR}" y2="${PT+ph}" stroke="#E0DED8"/>${yT}<polyline points="${sL}" fill="none" stroke="#1A5FA8" stroke-width="2" stroke-linejoin="round"/><polyline points="${bL}" fill="none" stroke="var(--or)" stroke-width="2" stroke-linejoin="round"/>${sDots}${bDots}${xL}</svg><div style="display:flex;gap:12px;margin-top:6px"><div style="display:flex;align-items:center;gap:5px;font-size:10px"><div style="width:10px;height:3px;background:#1A5FA8;border-radius:2px"></div><span style="color:#3A3A38">검색 지수</span></div><div style="display:flex;align-items:center;gap:5px;font-size:10px"><div style="width:10px;height:3px;background:var(--or);border-radius:2px"></div><span style="color:#3A3A38">예약 지수</span></div></div>`;
 })();
 
@@ -395,20 +420,39 @@ const fw=v=>Math.round(v).toLocaleString()+'원';
   const cx=75,cy=75,R=62,ri=40;let ang=-Math.PI/2;
   const paths=d.rows.map(r=>{const a=r.pct/100*Math.PI*2;const x1=cx+R*Math.cos(ang),y1=cy+R*Math.sin(ang),x2=cx+R*Math.cos(ang+a),y2=cy+R*Math.sin(ang+a);const x3=cx+ri*Math.cos(ang+a),y3=cy+ri*Math.sin(ang+a),x4=cx+ri*Math.cos(ang),y4=cy+ri*Math.sin(ang);const lg=a>Math.PI?1:0;ang+=a;return`<path d="M${x1},${y1} A${R},${R},0,${lg},1,${x2},${y2} L${x3},${y3} A${ri},${ri},0,${lg},0,${x4},${y4} Z" fill="${r.color}" opacity="0.88" stroke="white" stroke-width="2"/>`;}).join('');
   const legend=d.rows.map(r=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--gl)"><div style="display:flex;align-items:center;gap:7px"><div style="width:9px;height:9px;border-radius:50%;background:${r.color};flex-shrink:0"></div><span style="font-size:11px">${r.label}</span></div><div style="text-align:right"><div style="font-size:12px;font-weight:700">${Math.round(r.amount/1000)}k원</div><div style="font-size:9px;color:var(--gm)">${fp(r.pct)}</div></div></div>`).join('');
-  document.getElementById('c11').innerHTML=`<div style="display:flex;align-items:center;gap:20px"><svg viewBox="0 0 150 150" style="width:140px;flex-shrink:0">${paths}<text x="${cx}" y="${cy-7}" text-anchor="middle" font-size="10" fill="var(--gm)">1인 총소비</text><text x="${cx}" y="${cy+12}" text-anchor="middle" font-size="14" font-weight="700" fill="var(--bk)">${Math.round(d.total/10000)}만원</text></svg><div style="flex:1">${legend}</div></div>`;
+  const svgPart=`<svg viewBox="0 0 150 150" style="width:140px;flex-shrink:0">${paths}<text x="${cx}" y="${cy-7}" text-anchor="middle" font-size="10" fill="var(--gm)">1인 총소비</text><text x="${cx}" y="${cy+12}" text-anchor="middle" font-size="14" font-weight="700" fill="var(--bk)">${Math.round(d.total/10000)}만원</text></svg>`;
+  const isMobile=window.innerWidth<=600;
+  if(isMobile){
+    document.getElementById('c11').innerHTML=`<div style="display:flex;justify-content:center">${svgPart}</div><div style="margin-top:12px">${legend}</div>`;
+  } else {
+    document.getElementById('c11').innerHTML=`<div style="display:flex;align-items:center;gap:20px">${svgPart}<div style="flex:1">${legend}</div></div>`;
+  }
 })();
 
 /* C12 지자체 지원금 */
 (()=>{
   const subs=[
     {r:'제주도',p:'제주형 워케이션 활성화 사업',t:'도외 기업·근로자·개인사업자·프리랜서',s:'1인당 최대 30만원 (3박4일~6박7일 차등 지급, 숙박+여가 프로그램 바우처)',d:'2026 상시 모집',c:'#E5503A'},
-    {r:'부산광역시',p:'부산형 워케이션 (2026 우수모델 선정)',t:'수도권 소재 기업 임직원',s:'국비 2억원 확보, 기업 맞춤형 유치 지원 강화',d:'2026 사업 확장 중',c:'#3D52A0'},
-    {r:'강원특별자치도',p:'기업 워케이션 체류형 관광 연계',t:'수도권 기업·기관 대상',s:'주중 2박 이상 숙박 할인쿠폰 + 레저·렌터카 할인 연계',d:'2026 기업 유치형 지속 운영',c:'#0F8070'},
-    {r:'충청남도',p:'2026 워케이션 충남',t:'수도권 기업 임직원',s:'연박 프로모션 (3박 이상 시 혜택 극대화, 단가 단계별 증가)',d:'2026.04.15 ~ 06.30',c:'#6B4CA8'}
+    {r:'부산광역시',p:'부산형 워케이션 (2026 우수모델 선정)',t:'수도권 소재 기업 임직원',s:'국비 2억원 확보, 기업 맞춤형 유치 지원 강화',d:'2026 사업 확장 중',c:'#E5503A'},
+    {r:'강원특별자치도',p:'기업 워케이션 체류형 관광 연계',t:'수도권 기업·기관 대상',s:'주중 2박 이상 숙박 할인쿠폰 + 레저·렌터카 할인 연계',d:'2026 기업 유치형 지속 운영',c:'#E5503A'},
+    {r:'충청남도',p:'2026 워케이션 충남',t:'수도권 기업 임직원',s:'연박 프로모션 (3박 이상 시 혜택 극대화, 단가 단계별 증가)',d:'2026.04.15 ~ 06.30',c:'#E5503A'}
   ];
-  const hdr=`<div style="display:grid;grid-template-columns:110px 1fr 1fr 130px;background:#1A1A18">${['지자체','사업명 / 대상','지원 내용','운영 기간'].map(h=>`<div style="padding:10px 13px;font-size:10px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.04em;border-right:1px solid rgba(255,255,255,.08)">${h}</div>`).join('')}</div>`;
-  const rows=subs.map(s=>`<div style="display:grid;grid-template-columns:110px 1fr 1fr 130px;border-bottom:1px solid #E0DED8;align-items:center"><div style="padding:11px 13px;border-right:1px solid #E0DED8"><div style="font-size:10px;font-weight:700;color:${s.c}">${s.r}</div></div><div style="padding:11px 13px;border-right:1px solid #E0DED8"><div style="font-size:10px;font-weight:600;color:#3A3A38">${s.p}</div><div style="font-size:9px;color:#888780;margin-top:2px">대상: ${s.t}</div></div><div style="padding:11px 13px;border-right:1px solid #E0DED8"><div style="font-size:10px;font-weight:600;color:#1A1A18">${s.s}</div></div><div style="padding:11px 13px"><div style="font-size:10px;color:#888780">${s.d}</div></div></div>`).join('');
-  document.getElementById('c12').innerHTML=`<div style="border:1px solid #E0DED8;overflow:hidden">${hdr}${rows}</div>`;
+  const isMobile=window.innerWidth<=600;
+  if(isMobile){
+    const cards=subs.map(s=>`
+      <div style="border:1px solid #E0DED8;border-radius:4px;padding:14px;margin-bottom:10px;">
+        <div style="font-size:12px;font-weight:700;color:${s.c};margin-bottom:6px">${s.r}</div>
+        <div style="font-size:12px;font-weight:600;color:#3A3A38;margin-bottom:2px">${s.p}</div>
+        <div style="font-size:11px;color:#888780;margin-bottom:8px">대상: ${s.t}</div>
+        <div style="font-size:11px;color:#1A1A18;font-weight:600;margin-bottom:6px;padding:8px;background:#F7F6F0;border-radius:2px">${s.s}</div>
+        <div style="font-size:11px;color:#888780">${s.d}</div>
+      </div>`).join('');
+    document.getElementById('c12').innerHTML=`<div>${cards}</div>`;
+  } else {
+    const hdr=`<div style="display:grid;grid-template-columns:110px 1fr 1fr 130px;background:#1A1A18">${['지자체','사업명 / 대상','지원 내용','운영 기간'].map(h=>`<div style="padding:10px 13px;font-size:10px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.04em;border-right:1px solid rgba(255,255,255,.08)">${h}</div>`).join('')}</div>`;
+    const rows=subs.map(s=>`<div style="display:grid;grid-template-columns:110px 1fr 1fr 130px;border-bottom:1px solid #E0DED8;align-items:center"><div style="padding:11px 13px;border-right:1px solid #E0DED8"><div style="font-size:10px;font-weight:700;color:${s.c}">${s.r}</div></div><div style="padding:11px 13px;border-right:1px solid #E0DED8"><div style="font-size:10px;font-weight:600;color:#3A3A38">${s.p}</div><div style="font-size:9px;color:#888780;margin-top:2px">대상: ${s.t}</div></div><div style="padding:11px 13px;border-right:1px solid #E0DED8"><div style="font-size:10px;font-weight:600;color:#1A1A18">${s.s}</div></div><div style="padding:11px 13px"><div style="font-size:10px;color:#888780">${s.d}</div></div></div>`).join('');
+    document.getElementById('c12').innerHTML=`<div style="border:1px solid #E0DED8;overflow:hidden">${hdr}${rows}</div>`;
+  }
 })();
 
 </script>
